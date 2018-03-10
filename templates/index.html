@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Great Number Game</title>
+    <style>
+        #wrapper{
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 200px;
+            text-align: center;
+        }
+
+        .low, .high{
+            width: 150px;
+            height: 150px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 20px;
+            background-color: red;
+            color: white;
+            font-size: 2em;
+        }
+
+        .right{
+            width: 150px;
+            height: 150px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 20px;
+            background-color: blue;
+            color: white;
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+    <div id= "wrapper">
+        <h1>Welcome To the Great Number Game!</h1>
+        <h3>I am thinking of a number between 1 and 100</h3>
+        <h3>Take a guess!</h3>
+            <div id="box">
+                {% if session['result'] == 1  %}
+                <div class="high"><p>Too Low!</p></div>
+                {% elif session['result'] == 2 %}
+                <div class="low"><p>Too high!</p></div>
+                {% elif session['result'] == 0 %}
+                <div class="right"><p>{{session['ranNum']}} was right Number!</p></div>
+                <div class="playAgain">
+                    <form action="/playAgain" method="POST">
+                        <input type="submit" value="Play Again?">
+                    </form>
+                </div> 
+                {% endif %}    
+            </div>
+
+            <form action="/process" method="POST">
+                <div class="userBox">
+                    <input type="text" name="userInput">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+            
+        </form>
+    </div>
+</body>
+</html>
